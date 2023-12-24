@@ -52,8 +52,8 @@ class TaskView(APIView):
     def delete(self,request):
         try:
             id=request.GET.get('id')
-            Task=Task.objects.get(id=id)
-            Task.delete()
+            task=Task.objects.get(_id=ObjectId(id))
+            task.delete()
             return Response({'status':200,'message':"OK"})
         except Exception as e:
             return Response({'status':400,'message':"Something went Wrong",'error':str(e)})
