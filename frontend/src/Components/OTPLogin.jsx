@@ -43,7 +43,9 @@ const OTPLogin = () => {
                 if (response?.data.status == 200){
                     toast.success(response?.data.message)
                     // localStorage.setItem('user',JSON.stringify(response?.data?.username))
-                  updateUser(response?.data?.username)
+                  // updateUser(response?.data?.username)
+                  updateUser({username:response?.data?.username,email:response?.data?.email})
+
                     navigate('/dashboard')
                    
                   }else if (response?.data.status === 401) {

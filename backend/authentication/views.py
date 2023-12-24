@@ -65,13 +65,20 @@ class SendOTP(APIView):
         try:
             data=request.data
             email=data['email']
-            send_otp_via_email(email)
-            return Response({
-                'status': 200,
-                'message': 'OTP sent successfully to your email.',
-            })
+            user=CustomUser.objects.filter(email=email).first()
+            if user:
+                send_otp_via_email(email)
+                return Response({
+                    'status': 200,
+                    'message': 'OTP sent successfully to your email.',
+                })
+            else:
+                return Response({
+                    'status': 401,
+                    'message': 'No user user with this email',
+                })
         except Exception as e:
-            return Response({'error':e,'status':400})
+            return Response({'error':str(e),'status':400})
 
 
 
@@ -84,12 +91,13 @@ class OTPLogin(APIView):
             otp_entered = data['otp']
 
             user = CustomUser.objects.get(email=email)
-            if user.otp == otp_entered:
+            if user.otp == str(otp_entered):
                 user.otp = None
                 user.save()
                 login(request,user)
 
-                return Response({'status': 200,'message': 'OTP verification successful. You are logged in.' })
+                return Response({'status': 200,'message': 'OTP verification successful. You are logged in.','username': user.username,
+                                     'email': user.email })
             else:
                 return Response({'status': 401,'message': 'Invalid OTP entered.', })
         except Exception as e:

@@ -15,8 +15,6 @@ function App() {
   
   return (
 
-
-
   <BrowserRouter>
   <Header/>
   <ToastContainer/>

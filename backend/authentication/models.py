@@ -38,7 +38,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser,PermissionsMixin):
     email=models.EmailField(max_length=100, unique=True)
-    name=models.CharField(max_length=250,null=True)
+    username=models.CharField(max_length=250,null=True)
     otp=models.CharField(max_length=6,null=True,blank=True)
 
     USERNAME_FIELD = 'email'
