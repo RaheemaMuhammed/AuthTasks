@@ -36,9 +36,7 @@ class TaskView(APIView):
         try:
             data=request.data
             id=ObjectId(data['id'])
-            print(id)
             task=Task.objects.get(_id=id)
-            print(task)
             serializer=PostTaskSerializer(instance=task,data=data,partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -57,3 +55,30 @@ class TaskView(APIView):
             return Response({'status':200,'message':"OK"})
         except Exception as e:
             return Response({'status':400,'message':"Something went Wrong",'error':str(e)})
+
+
+class ScheduleView(APIView):
+    def get(self, request):
+        try:
+
+            schedules = Schedule.objects.all()
+            serializer = ScheduleSerializer(schedules, many=True)
+            return Response({'payload': serializer.data, 'status': 200, 'message': 'OK'})
+        except Exception as e:
+            return Response({'error': str(e), 'status': 404})
+
+    def post(self, request):
+        try:
+            data = request.data
+            task_id = data['task_id']
+            data['task']=ObjectId(task_id)
+            serializer = PostScheduleSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+           
+                return Response({'status': 201, 'message': 'Schedule Created'})
+            else:
+                return Response({'status':400,'message':'Invalid Data','error':serializer.errors})
+
+        except Exception as e:
+            return Response({'status': 400, 'message': 'Something went wrong', 'error': str(e)})

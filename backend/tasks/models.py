@@ -7,6 +7,7 @@ from djongo import models as djmodels
 
 class Task(models.Model):
     _id = djmodels.ObjectIdField(primary_key=True)
+
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)
@@ -17,6 +18,7 @@ class Task(models.Model):
         return self.title
     
 class Schedule(models.Model):
+    _id = djmodels.ObjectIdField(primary_key=True)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     scheduled_date = models.DateField()
     scheduled_time = models.TimeField()
