@@ -4,10 +4,12 @@ import { axiosInstance } from '../Axios/instanse'
 import EditTaskModal from './EditTaskModal'
 import DeleteTaskModal from './DeleteTaskModal'
 import { toast } from 'react-toastify'
+import ScheduleModal from './ScheduleModal'
 const TaskList = ({refresh,setRefresh,showModal, setShowModal}) => {
     const [tasks,setTasks]=useState([])
     const [editModal,setEditModal]=useState(false)
     const [deleteModal,setDeleteModal]=useState(false)
+    const [scheduleModal,setScheduleModal]=useState(false)
     const [data,setData]=useState({})
     const [id,setId]=useState('')
     useEffect(() => {
@@ -48,6 +50,7 @@ const TaskList = ({refresh,setRefresh,showModal, setShowModal}) => {
    <div className=' border-primary shadow-lg shadow-primary rounded-lg border-2 lg:mx-4 grid grid-cols-2 lg:grid-cols-4 mt-2 gap-1 lg:gap-2 p-3'>
         {editModal&&<EditTaskModal  refresh={refresh} setRefresh={setRefresh} editModal={editModal} setEditModal={setEditModal} data={data}/>}
         {deleteModal && <DeleteTaskModal  refresh={refresh} setRefresh={setRefresh} deleteModal={deleteModal} setDeleteModal={setDeleteModal} id={id}/>}
+        {scheduleModal && <ScheduleModal  refresh={refresh} setRefresh={setRefresh} scheduleModal={scheduleModal} setScheduleModal={setScheduleModal} id={id}/>}
          
         
           { tasks?.map((item,indx)=>{
@@ -106,7 +109,7 @@ const TaskList = ({refresh,setRefresh,showModal, setShowModal}) => {
             <div className=''>
                 <FaTrash size={22} style={{color:'brown',cursor:'pointer'}} onClick={()=>{setDeleteModal(!deleteModal);setId(item?._id)}}/>
                 <FaEdit size={22} style={{color:'brown',marginTop:'7px',cursor:'pointer'}} onClick={()=>{item?.completed ? toast.error('Cannot edit completed task') :setEditModal(!editModal);setData(item)}}/>
-                <FaCalendarAlt size={22} style={{color:'brown',marginTop:'7px',cursor:'pointer'}} onClick={()=>{setEditModal(!editModal);setData(item)}}/>
+                <FaCalendarAlt size={22} style={{color:'brown',marginTop:'7px',cursor:'pointer'}} onClick={()=>{setScheduleModal(!scheduleModal);setId(item?._id)}}/>
                 </div>
         </div>
         

@@ -9,10 +9,9 @@ from bson import ObjectId
 
 
 class TaskView(APIView):
-    # permission_classes = [IsAuthenticated] 
     def get(self,request):
         try:
-            tasks=Task.objects.all().order_by('-created_at')
+            tasks=Task.objects.all().order_by('completed','-created_at')
             serializer=TaskSerializer(tasks,many=True)
             return Response({'payload':serializer.data,'status':200,'message':'OK'})
         except Exception as e:

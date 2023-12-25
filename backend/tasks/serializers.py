@@ -34,7 +34,7 @@ class ScheduleSerializer(serializers.ModelSerializer):
         return obj.task.completed
 
     def get_task(self, obj):
-        return str(obj.task._id) 
+        return str(obj.task.title) 
 
     class Meta:
         model = Schedule

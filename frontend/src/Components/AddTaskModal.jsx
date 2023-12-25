@@ -16,7 +16,6 @@ const AddTaskModal = ({refresh,setRefresh,addModal, setaddModal}) => {
         form.append('completed',values.completed)
         form.append('user',user.email)
        
-       
         try {
             const response= await axiosInstance
             .post('api/tasks/',form,
@@ -25,6 +24,7 @@ const AddTaskModal = ({refresh,setRefresh,addModal, setaddModal}) => {
                     "Content-type" :"application/json"
                 }
             })
+            console.log(response);
          
             if(response?.data.status===201){
                 setRefresh(!refresh)
