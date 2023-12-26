@@ -16,7 +16,6 @@ const OTPLogin = () => {
                         "Content-type" :"application/json"
                     }
                 })
-                console.log(response);
                 if (response?.data.status == 200){
                     toast.success(response?.data.message)
                     setVerify(true)

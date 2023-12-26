@@ -30,7 +30,6 @@ const DeleteTaskModal = ({refresh,setRefresh,deleteModal, setDeleteModal,id}) =>
                
             }
         } catch (error) {
-            console.log(error);
             toast.error(error)
         }
     

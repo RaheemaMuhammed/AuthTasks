@@ -26,7 +26,6 @@ const EditTaskModal = ({refresh,setRefresh,editModal, setEditModal,data}) => {
                     "Content-type" :"application/json"
                 }
             })
-            console.log(response);
             if(response?.data.status===200){
                 setRefresh(!refresh)
                 toast.success('Successfully Edited task')

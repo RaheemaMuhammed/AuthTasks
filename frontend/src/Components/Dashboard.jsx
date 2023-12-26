@@ -20,7 +20,6 @@ const Dashboard = () => {
                 "Content-type" :"application/json"
             }
             })
-            console.log(response);
           setSchedules(response?.data?.payload)
             
           } catch (error) {

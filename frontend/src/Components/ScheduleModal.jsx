@@ -21,7 +21,6 @@ const ScheduleModal = ({refresh,setRefresh,scheduleModal, setScheduleModal,id}) 
                     "Content-type" :"application/json"
                 }
             })
-         console.log(response);
             if(response?.data.status===201){
                 setRefresh(!refresh)
                 toast.success('Tasked scheduled successfully')

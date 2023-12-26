@@ -21,7 +21,6 @@ const TaskList = ({refresh,setRefresh,showModal, setShowModal}) => {
                     "Content-type" :"application/json"
                 }
                 })
-                console.log(response);
               setTasks(response?.data?.payload)
                 
               } catch (error) {

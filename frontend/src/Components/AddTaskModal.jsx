@@ -24,7 +24,6 @@ const AddTaskModal = ({refresh,setRefresh,addModal, setaddModal}) => {
                     "Content-type" :"application/json"
                 }
             })
-            console.log(response);
          
             if(response?.data.status===201){
                 setRefresh(!refresh)
@@ -37,7 +36,6 @@ const AddTaskModal = ({refresh,setRefresh,addModal, setaddModal}) => {
                
             }
         } catch (error) {
-            console.log(error);
             toast.error(error)
         }
     
