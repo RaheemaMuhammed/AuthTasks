@@ -82,13 +82,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'authtasks',
-        'HOST': '127.0.0.1',
-        'PORT': 27017,
+        'ENGINE': os.getenv('ENGINE'),
+        "CLIENT": {
+           "name": os.getenv('CLIENT_name'),
+           "host": os.getenv('CLIENT_host'),
+           "username":os.getenv('CLIENT_username'),
+           "password": os.getenv('CLIENT_password'),
+           "authMechanism": os.getenv('CLIENT_authMechanism'),
+        }, 
     }
 }
 
