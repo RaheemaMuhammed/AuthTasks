@@ -1,2 +1,2 @@
-/myapi/* http://3.27.212.135/:splat 200
+/redirect/* http://3.27.212.135/:splat 200
 /* /index.html 200

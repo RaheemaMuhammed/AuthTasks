@@ -17,8 +17,7 @@ const AddTaskModal = ({refresh,setRefresh,addModal, setaddModal}) => {
         form.append('user',user.email)
        
         try {
-            const response= await axiosInstance
-            .post('api/tasks/',form,
+            const response= await axiosInstance.post('api/tasks/',form,
             {
                 headers :{
                     "Content-type" :"application/json"
